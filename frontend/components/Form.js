@@ -13,6 +13,7 @@ export default class Form extends React.Component {
           />
           <button>Add Todo</button>
         </form>
+        <button onClick={() =>this.props.clear()}>Clear Completed</button>
       </div>
     )
   }

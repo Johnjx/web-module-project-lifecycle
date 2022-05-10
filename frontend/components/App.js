@@ -50,6 +50,12 @@ export default class App extends React.Component {
     })
   }
 
+  clearCompleted = () => {
+    this.setState({
+      todos: this.state.todos.filter(todo => !todo.completed)
+    })
+  }
+
   componentDidMount() {
     axios.get(URL)
     .then(res => {
@@ -69,6 +75,7 @@ export default class App extends React.Component {
         todoInput={this.state.todoInput}
         onChange={this.handleChange}
         submit={this.handleSubmit}
+        clear={this.clearCompleted}
         />
       </div>
     )
