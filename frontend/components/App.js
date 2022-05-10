@@ -30,6 +30,18 @@ export default class App extends React.Component {
     .catch(err => console.log(err))
   }
 
+  toggleItem = todoId => {
+    axios.patch(`${URL}/${todoId}`)
+    .then(res => {
+      this.setState({
+        todos: this.state.todos.map(todo => {
+          return todo.id === todoId ? {...todo, completed: res.data.data.completed} : todo
+        })
+      })
+    })
+    .catch(err => console.log(err))
+  }
+
   handleSubmit = evt => {
     evt.preventDefault();
     this.addTodo(this.state.todoInput)
@@ -51,7 +63,8 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        {this.state.todos.length > 0? <TodoList todos={this.state.todos} />: <p>Loading...</p>}
+        {this.state.todos.length > 0?
+        <TodoList todos={this.state.todos} toggle={this.toggleItem} />: <p>Loading...</p>}
         <Form
         todoInput={this.state.todoInput}
         onChange={this.handleChange}

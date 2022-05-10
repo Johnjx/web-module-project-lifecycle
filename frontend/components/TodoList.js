@@ -10,6 +10,7 @@ export default class TodoList extends React.Component {
           <Todo
           key={todo.name}
           todo={todo}
+          toggle={this.props.toggle}
           />
         ))}
       </div>

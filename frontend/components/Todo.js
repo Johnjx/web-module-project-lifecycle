@@ -5,7 +5,10 @@ export default class Todo extends React.Component {
     return (
       <section>
         <div className='list-content' id={`list${this.props.todo.id}`}>
-          <div>
+          <div
+          className={this.props.todo.completed? 'completed': ''}
+          onClick={() => this.props.toggle(this.props.todo.id)}
+          >
             <p>{this.props.todo.name}</p>
           </div>
         </div>
