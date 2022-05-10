@@ -7,13 +7,30 @@ const URL = 'http://localhost:9000/api/todos'
 
 export default class App extends React.Component {
   state = {
-    todoInput: '',
+    todoInput: "",
     todos: []
   }
 
   handleChange = evt => {
     this.setState({
       todoInput: evt.target.value
+    })
+  }
+
+  addTodo = todo => {
+    axios.post(URL, { 
+      name: todo,
+      completes: false
+     })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+
+  handleSubmit = evt => {
+    evt.preventDefault();
+    this.addTodo(this.state.todoInput)
+    this.setState({
+      todoInput: ""
     })
   }
 
@@ -34,6 +51,7 @@ export default class App extends React.Component {
         <Form
         todoInput={this.state.todoInput}
         onChange={this.handleChange}
+        submit={this.handleSubmit}
         />
       </div>
     )
