@@ -83,3 +83,15 @@ ul, form {
 .todo:hover {
   cursor: pointer;
 }
+
+.list-content {
+  padding: 2%;
+}
+
+.list-content:hover {
+  cursor: pointer;
+}
+
+.completed::after {
+  content: "☑";
+}
