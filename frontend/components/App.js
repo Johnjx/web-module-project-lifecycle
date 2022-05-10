@@ -20,9 +20,13 @@ export default class App extends React.Component {
   addTodo = todo => {
     axios.post(URL, { 
       name: todo,
-      completes: false
+      completed: false
      })
-    .then(res => console.log(res))
+    .then(res => {
+      this.setState({
+        todos: this.state.todos.concat(res.data.data)
+      })
+    })
     .catch(err => console.log(err))
   }
 
